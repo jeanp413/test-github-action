@@ -23,3 +23,6 @@ jobs:
           echo "${{ inputs.stable }}"
           echo "${{ inputs.stable == true }}"
           echo "${{ inputs.stable == false }}"
+
+          quality_name=$([ ${{ inputs.stable }} = "false" ] && echo "-insiders" || echo "-stable")
+          echo "quality -> ${quality_name}"
