@@ -17,7 +17,6 @@ on:
         description: 'Create GitHub and DockerHub Release'
         type: boolean
         required: true
-        default: "false"
 
 jobs:
   build-dependencies:
@@ -31,5 +30,6 @@ jobs:
           set -e
           echo "${{ github.event.inputs.uploadRelease }}"
           echo "${{ github.event.inputs.uploadRelease == true }}"
+          echo "${{ github.event.inputs.uploadRelease == false }}"
           echo "::set-output name=quality::test"
       
