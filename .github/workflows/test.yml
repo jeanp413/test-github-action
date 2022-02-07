@@ -1,0 +1,35 @@
+name: Test
+on:
+  workflow_dispatch:
+    inputs:
+      commit:
+        description: 'Commit to release'
+        required: true
+      quality:
+        description: 'Quality'
+        required: true
+        type: choice
+        options: 
+        - insiders
+        - stable
+        default: stable
+      uploadRelease:
+        description: 'Create GitHub and DockerHub Release'
+        type: boolean
+        required: true
+        default: "false"
+
+jobs:
+  build-dependencies:
+    runs-on: ubuntu-latest
+    name: Build dependencies 
+    outputs:
+      quality: ${{ steps.step_set_output.outputs.quality }}
+    steps:    
+      - id: step_set_output
+        run: |
+          set -e
+          echo "${{ github.event.inputs.uploadRelease }}"
+          echo "${{ github.event.inputs.uploadRelease == true }}"
+          echo "::set-output name=quality::test"
+      
