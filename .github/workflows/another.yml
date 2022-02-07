@@ -1,0 +1,23 @@
+name: Another
+on:
+  workflow_call:
+    inputs:
+      quality:
+        description: 'string input'
+        type: string
+        required: true
+      stable:
+        description: 'bool input'
+        type: boolean
+        required: true
+
+jobs:
+  docker-release:
+    runs-on: ubuntu-latest
+    name: Build and publish Docker image
+    steps:      
+      - name: Test echo
+        run: |
+          set -e
+          echo "${{ inputs.quality }}"
+          echo "${{ inputs.stable }}"

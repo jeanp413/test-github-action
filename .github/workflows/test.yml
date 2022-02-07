@@ -19,7 +19,7 @@ on:
         required: true
 
 jobs:
-  build-dependencies:
+  test:
     runs-on: ubuntu-latest
     name: Build dependencies 
     outputs:
@@ -31,5 +31,11 @@ jobs:
           echo "${{ github.event.inputs.uploadRelease }}"
           echo "${{ github.event.inputs.uploadRelease == true }}"
           echo "${{ github.event.inputs.uploadRelease == false }}"
-          echo "::set-output name=quality::test"
-      
+          echo "::set-output name=quality::${{ github.event.inputs.quality }}"
+
+  another:
+    needs: [test]
+    uses: ./.github/workflows/another.yml
+    with:
+      quality: ${{ needs.test.outputs.quality }}
+      stable: ${{ needs.test.outputs.quality == 'stable' }}
