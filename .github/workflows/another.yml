@@ -21,3 +21,5 @@ jobs:
           set -e
           echo "${{ inputs.quality }}"
           echo "${{ inputs.stable }}"
+          echo "${{ inputs.stable == true }}"
+          echo "${{ inputs.stable == false }}"
