@@ -77,6 +77,20 @@ async function generateSSHKey(filePath) {
     }
 }
 
+async function validateNoPassphare(filePath) {
+    const resp = execCommand("ssh-keygen", ["-y", "-f", filePath], { timeout: 5000 });
+    const { code } = await resp.completed;
+
+    switch (code) {
+        case 0:
+            return;
+        case 256:
+            throw new SSHCommandTimeoutError();
+        default:
+            throw new NativeSSHError(code, resp.stdout, resp.stderr);
+    }
+}
+
 async function main() {
     try {
         const currentDir = process.cwd();
@@ -86,7 +100,8 @@ async function main() {
 
         const content = await fs.promises.readFile(filepath, 'utf8');
         console.log(content);
-        
+
+        await validateNoPassphare(filepath);
     } catch (error) {
         console.error(error);
     }
