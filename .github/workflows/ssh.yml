@@ -6,11 +6,20 @@ jobs:
   test:
     runs-on: windows-2022
     name: generate ssh key
-    steps:    
-      - id: step_set_output
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+        node-version: 20
+
+      - id: run_script
         run: |
-          $filename = "foo"
-          $filepath = Join-Path $PSScriptRoot $filename
-          ssh-keygen -t ed25519 -f $filepath -q -N ""
-          get-content $filepath
+          node .\scripts\sshkey.js
+
+      # - id: step_set_output
+      #   run: |
+      #     $filename = "foo"
+      #     $filepath = Join-Path $PSScriptRoot $filename
+      #     ssh-keygen -t ed25519 -f $filepath -q -N ""
+      #     get-content $filepath
 
