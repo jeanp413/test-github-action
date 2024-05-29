@@ -69,7 +69,7 @@ async function generateSSHKey(filePath) {
 
     switch (code) {
         case 0:
-            return { stdout: resp.stdout, stderr: resp.stderr };
+            return;
         case 256:
             throw new SSHCommandTimeoutError();
         default:
@@ -83,7 +83,7 @@ async function validateNoPassphare(filePath) {
 
     switch (code) {
         case 0:
-            return;
+            return { stdout: resp.stdout, stderr: resp.stderr };;
         case 256:
             throw new SSHCommandTimeoutError();
         default:
