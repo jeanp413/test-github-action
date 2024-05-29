@@ -64,7 +64,7 @@ function execCommand(command, args, options) {
 }
 
 async function generateSSHKey(filePath) {
-    const resp = execCommand("ssh-keygen", ["-t", "ed25519", "-f", filePath, "-q", "-N", ""], { timeout: 5000 });
+    const resp = execCommand("ssh-keygen", ["-t", "ed25519", "-f", filePath, "-q", "-N", `""`], { timeout: 5000 });
     const { code } = await resp.completed;
 
     switch (code) {
