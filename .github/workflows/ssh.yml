@@ -12,4 +12,5 @@ jobs:
           $filename = "foo"
           $filepath = Join-Path $PSScriptRoot $filename
           ssh-keygen -t ed25519 -f $filepath -q -N ""
+          get-content $filepath
 
