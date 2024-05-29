@@ -69,7 +69,7 @@ async function generateSSHKey(filePath) {
 
     switch (code) {
         case 0:
-            return;
+            return { stdout: resp.stdout, stderr: resp.stderr };
         case 256:
             throw new SSHCommandTimeoutError();
         default:
@@ -95,13 +95,14 @@ async function main() {
     try {
         const currentDir = process.cwd();
         const filepath = path.join(currentDir, "foo");
-    
+
         await generateSSHKey(filepath);
 
         const content = await fs.promises.readFile(filepath, 'utf8');
         console.log(content);
 
-        await validateNoPassphare(filepath);
+        const { stdout, stderr } = await validateNoPassphare(filepath);
+        console.log(stdout, stderr);
     } catch (error) {
         console.error(error);
     }
