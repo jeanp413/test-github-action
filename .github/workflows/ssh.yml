@@ -1,0 +1,13 @@
+name: Test
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: windows-2022
+    name: generate ssh key
+    steps:    
+      - id: step_set_output
+        run: |
+          ssh-keygen -t ed25519 -f %cd%\foo -q -N ""
+
