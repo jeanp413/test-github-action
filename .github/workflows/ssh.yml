@@ -14,7 +14,7 @@ jobs:
 
       - id: run_script
         run: |
-          node .\scripts\sshkey.js
+          node .\scripts\sshkey.mjs
 
       # - id: step_set_output
       #   run: |
