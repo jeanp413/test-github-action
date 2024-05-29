@@ -9,5 +9,7 @@ jobs:
     steps:    
       - id: step_set_output
         run: |
-          ssh-keygen -t ed25519 -f %cd%\foo -q -N ""
+          $filename = "foo"
+          $filepath = Join-Path $PSScriptRoot $filename
+          ssh-keygen -t ed25519 -f $filepath -q -N ""
 
