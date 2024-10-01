@@ -3,7 +3,7 @@
 //
 // See https://aka.ms/devcontainer.json for more information.
 {
-	"name": "Gitpod",
+	"name": "foo",
 	// Use "image": "mcr.microsoft.com/vscode/devcontainers/base:ubuntu",
 	// instead of the build to use a pre-built image.
 	"build": {
