@@ -15,11 +15,14 @@ jobs:
       - name: Install winget
         uses: Cyberboss/install-winget@v1
 
+      - id: Install ssh
+        run: |
+          winget install "openssh" --accept-source-agreements
+          ssh -V
+
       - id: run_script
         run: |
-          winget install "openssh"
-          ssh -V
-          node .\scripts\sshkey.mjs
+          node .\scripts\ssh.mjs
 
       # - id: step_set_output
       #   run: |
