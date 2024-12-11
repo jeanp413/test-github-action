@@ -1,20 +1,4 @@
 # use busybox to remove a dependency on image
-if [ -z "$(which mkdir 2>/dev/null)" ]; then
-    alias mkdir="/usr/local/gitpod/shared/busybox mkdir"
-fi
-if [ -z "$(which rm 2>/dev/null)" ]; then
-    alias rm="/usr/local/gitpod/shared/busybox rm"
-fi
-if [ -z "$(which wget 2>/dev/null)" ]; then
-    alias wget="/usr/local/gitpod/shared/busybox wget"
-fi
-if [ -z "$(which uname 2>/dev/null)" ]; then
-    alias uname="/usr/local/gitpod/shared/busybox uname"
-fi
-if [ -z "$(which chmod 2>/dev/null)" ]; then
-    alias chmod="/usr/local/gitpod/shared/busybox chmod"
-fi
-
 ARCH="amd64"
 if [ "$(uname -m)" = "aarch64" ] || [ "$(uname -m)" = "arm64" ]; then
     ARCH="arm64"
