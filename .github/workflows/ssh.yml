@@ -27,6 +27,7 @@ jobs:
 
       - id: run_script
         run: |
+          type .\scripts\foo.sh
           node .\scripts\ssh.mjs
 
       # - id: step_set_output
