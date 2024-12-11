@@ -29,9 +29,9 @@ jobs:
         run: |
           node .\scripts\ssh.mjs
 
-      - run: |
-          type ".\scripts\foo.sh"
-          type ".\scripts\foo.sh" | ssh -T -o ProxyCommand=none -F "D:\a\test-github-action\test-github-action\scripts\config" -vvv 0193b2d8-0901-722c-b519-aa9da52ab4a9.gitpod.remote sh
+      # - run: |
+      #     type ".\scripts\foo.sh"
+      #     type ".\scripts\foo.sh" | ssh -T -o ProxyCommand=none -F "D:\a\test-github-action\test-github-action\scripts\config" -vvv 0193b2d8-0901-722c-b519-aa9da52ab4a9.gitpod.remote sh
 
 
       # - id: step_set_output
