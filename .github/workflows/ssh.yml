@@ -22,7 +22,7 @@ jobs:
 
       - run: |
           icacls .\scripts\gp_ssh_key
-          icacls .\scripts\gp_ssh_key /grant:r $Env:Username:f /inheritance:r
+          icacls .\scripts\gp_ssh_key /grant:r BUILTIN\Administrators:f /inheritance:r
           icacls .\scripts\gp_ssh_key
 
       - id: run_script
