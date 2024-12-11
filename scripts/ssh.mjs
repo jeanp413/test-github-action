@@ -24,7 +24,7 @@ class NativeSSH {
         let timeoutHandler;
         if (options?.timeout && options.timeout > 0) {
             abortController = new AbortController();
-            timeout = setTimeout(() => abortController?.abort(), options.timeout);
+            timeoutHandler = setTimeout(() => abortController?.abort(), options.timeout);
         }
         const opts = {
             ...options,
