@@ -12,6 +12,9 @@ jobs:
         with:
           node-version: 20
 
+      - name: Install winget
+        uses: Cyberboss/install-winget@v1
+
       - id: run_script
         run: |
           winget install "openssh"
