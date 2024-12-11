@@ -19,8 +19,11 @@ jobs:
         run: |
           winget install "openssh" --accept-source-agreements
           ssh -V
+
       - run: |
-          icacls .\scripts /grant:r runneradmin:f /inheritance:r
+          icacls .\scripts\gp_ssh_key
+          icacls .\scripts\gp_ssh_key /grant:r $Env:Username:f /inheritance:r
+          icacls .\scripts\gp_ssh_key
 
       - id: run_script
         run: |
