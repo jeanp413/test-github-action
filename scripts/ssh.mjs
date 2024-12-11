@@ -169,6 +169,7 @@ Host 0193b2d8-0901-722c-b519-aa9da52ab4a9.gitpod.remote
     Compression yes
     ServerAliveInterval 300
     ServerAliveCountMax 5
+    StrictHostKeyChecking no
     Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes256-ctr
     ConnectTimeout 0
 `, {});
