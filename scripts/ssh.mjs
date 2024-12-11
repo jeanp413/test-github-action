@@ -35,9 +35,11 @@ class NativeSSH {
         const stdoutDataArr = [];
         const stderrDataArr = [];
         process.stdout.on('data', data => {
+            console.log(`===> [stdout] ${data}`);
             stdoutDataArr.push(data.toString());
         });
         process.stderr.on('data', data => {
+            console.log(`===> [stderr] ${data}`);
             stderrDataArr.push(data.toString());
         });
         const completed = new Promise((resolve, reject) => {
@@ -175,5 +177,5 @@ Host 0193b2d8-0901-722c-b519-aa9da52ab4a9.gitpod.remote
 
 
 const ssh = new NativeSSH("ssh");
-const installAgentScriptOutput = await ssh.runSSHRemoteCommand({ hostname: "0193b2d8-0901-722c-b519-aa9da52ab4a9.gitpod.remote" }, "foo", 1 * 60 * 1000, ['-o', 'ProxyCommand=none', "-F", sshConfig]);
+const installAgentScriptOutput = await ssh.runSSHRemoteCommand({ hostname: "0193b2d8-0901-722c-b519-aa9da52ab4a9.gitpod.remote" }, "foo", 1 * 60 * 1000, ['-o', 'ProxyCommand=none', "-F", sshConfig, "-vvv"]);
 console.log(`installAgentScriptOutput output: `, installAgentScriptOutput.stderr + '\n\n' + installAgentScriptOutput.stdout);
