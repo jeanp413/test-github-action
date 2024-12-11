@@ -7,38 +7,5 @@ AGENT_DOWNLOAD_URL="https://gitpod-flex-releases.s3.amazonaws.com/vscode/develop
 AGENT_INSTALL_DIR="/usr/local/gitpod/shared/vscode/0.1.2024120801"
 AGENT_INSTALL_PATH="$AGENT_INSTALL_DIR/vscode-agent"
 
-# Ensure only one instance of script is running
-LOCK_DIR=/tmp/vscode-agent-script.lock
-if mkdir "$LOCK_DIR" 2>/dev/null; then
-    trap 'rm -rf "$LOCK_DIR"' EXIT
-else
-    echo "Lock file already exist. Another instance is already running."
-    echo ">>>SUCCESS<<<"
-    exit 0
-fi
-
-if [ ! -f "$AGENT_INSTALL_PATH" ]; then
-    if [ ! -d "$AGENT_INSTALL_DIR" ]; then
-        mkdir -p "$AGENT_INSTALL_DIR"
-        if [ $? -ne 0 ]; then
-            echo "Error creating agent install directory"
-            exit 0
-        fi
-    fi
-
-    wget -O "$AGENT_INSTALL_PATH" "$AGENT_DOWNLOAD_URL" --tries=3 --timeout=15 --quiet
-    if [ ! -f "$AGENT_INSTALL_PATH" ]; then
-        echo "Error downloading agent."
-        exit 0
-    fi
-    chmod +x "$AGENT_INSTALL_PATH"
-fi
-
-"$AGENT_INSTALL_PATH" configure "f1a4fb101478ce6ec82fe9627c43efbf9e98c813" "stable" "0.1.2024120801" "https://gitpod-flex-releases.s3.amazonaws.com/vscode/development/jpindustrial-muskox"
-if [ $? -ne 0 ]; then
-    echo "Error configuring VS Code."
-    exit 0
-fi
-
 echo ">>>SUCCESS<<<"
 exit 0
