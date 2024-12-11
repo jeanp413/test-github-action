@@ -178,5 +178,5 @@ Host 0193b2d8-0901-722c-b519-aa9da52ab4a9.gitpod.remote
 
 
 const ssh = new NativeSSH("ssh");
-const installAgentScriptOutput = await ssh.runSSHRemoteCommand({ hostname: "0193b2d8-0901-722c-b519-aa9da52ab4a9.gitpod.remote" }, "foo", 1 * 60 * 1000, ['-o', 'ProxyCommand=none', "-F", sshConfig, "-vvv"]);
+// const installAgentScriptOutput = await ssh.runSSHRemoteCommand({ hostname: "0193b2d8-0901-722c-b519-aa9da52ab4a9.gitpod.remote" }, "foo", 1 * 60 * 1000, ['-o', 'ProxyCommand=none', "-F", sshConfig, "-vvv"]);
 console.log(`installAgentScriptOutput output: `, installAgentScriptOutput.stderr + '\n\n' + installAgentScriptOutput.stdout);
