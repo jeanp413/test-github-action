@@ -161,7 +161,7 @@ Host 0193b2d8-0901-722c-b519-aa9da52ab4a9.gitpod.remote
     User gitpod_devcontainer
     Port 22
     HostName ec2-18-197-143-102.eu-central-1.compute.amazonaws.com
-    IdentityFile gp_ssh_key
+    IdentityFile ${path.join(__dirname, "gp_ssh_key")}
     IdentitiesOnly yes
     Compression yes
     ServerAliveInterval 300
@@ -169,8 +169,8 @@ Host 0193b2d8-0901-722c-b519-aa9da52ab4a9.gitpod.remote
     Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes256-ctr
     ConnectTimeout 0
 `);
-await fs.promises.copyFile(path.join(__dirname, "gp_ssh_key"), path.join(sshFolder,"gp_ssh_key"))
-await fs.promises.copyFile(path.join(__dirname, "gp_ssh_key.pub"), path.join(sshFolder,"gp_ssh_key.pub"))
+// await fs.promises.copyFile(path.join(__dirname, "gp_ssh_key"), path.join(sshFolder,"gp_ssh_key"))
+// await fs.promises.copyFile(path.join(__dirname, "gp_ssh_key.pub"), path.join(sshFolder,"gp_ssh_key.pub"))
 
 
 const ssh = new NativeSSH("ssh");
