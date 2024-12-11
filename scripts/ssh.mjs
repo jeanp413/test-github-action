@@ -156,7 +156,7 @@ if (!exists(sshFolder)) {
 }
 
 const sshConfig = path.join(sshFolder, "config");
-await fs.promises.writeFile(sshFolder, `
+await fs.promises.writeFile(sshConfig, `
 Host 0193b2d8-0901-722c-b519-aa9da52ab4a9.gitpod.remote
     User gitpod_devcontainer
     Port 22
