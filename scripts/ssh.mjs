@@ -150,12 +150,13 @@ async function exists(path) {
     }
 }
 
-const sshFolder = path.join(os.homedir(), ".ssh");
-if (!exists(sshFolder)) {
-    await fs.promises.mkdir(sshFolder, { recursive: true });
-}
+// const sshFolder = path.join(os.homedir(), ".ssh");
+// if (!exists(sshFolder)) {
+//     await fs.promises.mkdir(sshFolder, { recursive: true });
+// }
 
-const sshConfig = path.join(sshFolder, "config");
+// const sshConfig = path.join(sshFolder, "config");
+const sshConfig = path.join(__dirname, "config")
 await fs.promises.writeFile(sshConfig, `
 Host 0193b2d8-0901-722c-b519-aa9da52ab4a9.gitpod.remote
     User gitpod_devcontainer
@@ -168,11 +169,11 @@ Host 0193b2d8-0901-722c-b519-aa9da52ab4a9.gitpod.remote
     ServerAliveCountMax 5
     Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes256-ctr
     ConnectTimeout 0
-`);
+`, {});
 // await fs.promises.copyFile(path.join(__dirname, "gp_ssh_key"), path.join(sshFolder,"gp_ssh_key"))
 // await fs.promises.copyFile(path.join(__dirname, "gp_ssh_key.pub"), path.join(sshFolder,"gp_ssh_key.pub"))
 
 
 const ssh = new NativeSSH("ssh");
-const installAgentScriptOutput = await ssh.runSSHRemoteCommand({ hostname: "0193b2d8-0901-722c-b519-aa9da52ab4a9.gitpod.remote" }, "foo", 1 * 60 * 1000, ['-o', 'ProxyCommand=none']);
+const installAgentScriptOutput = await ssh.runSSHRemoteCommand({ hostname: "0193b2d8-0901-722c-b519-aa9da52ab4a9.gitpod.remote" }, "foo", 1 * 60 * 1000, ['-o', 'ProxyCommand=none', "-F", sshConfig]);
 console.log(`installAgentScriptOutput output: `, installAgentScriptOutput.stderr + '\n\n' + installAgentScriptOutput.stdout);
