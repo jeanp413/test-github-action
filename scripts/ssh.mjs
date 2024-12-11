@@ -21,7 +21,7 @@ class NativeSSH {
         const id = this.commandSeq++;
         console.log('ssh', id, command, ...(args || []));
         let abortController;
-        let timeout;
+        let timeoutHandler;
         if (options?.timeout && options.timeout > 0) {
             abortController = new AbortController();
             timeout = setTimeout(() => abortController?.abort(), options.timeout);
