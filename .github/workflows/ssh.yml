@@ -15,7 +15,7 @@ jobs:
       - name: Install winget
         uses: Cyberboss/install-winget@v1
 
-      - id: Install ssh
+      - id: installssh
         run: |
           winget install "openssh" --accept-source-agreements
           ssh -V
