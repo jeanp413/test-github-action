@@ -14,6 +14,8 @@ jobs:
 
       - id: run_script
         run: |
+          winget install "openssh"
+          ssh -V
           node .\scripts\sshkey.mjs
 
       # - id: step_set_output
@@ -22,4 +24,3 @@ jobs:
       #     $filepath = Join-Path $PSScriptRoot $filename
       #     ssh-keygen -t ed25519 -f $filepath -q -N ""
       #     get-content $filepath
-
