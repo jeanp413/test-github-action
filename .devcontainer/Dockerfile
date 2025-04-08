@@ -48,3 +48,5 @@ RUN pip install --no-build-isolation --no-deps --no-cache-dir "unsloth[cu124-amp
 RUN pip install --no-cache-dir jupyter
 
 # Install all dependencies from requirements.txt to ensure nothing is missing
+COPY requirements.txt /tmp/
+RUN pip install --no-cache-dir -r /tmp/requirements.txt
