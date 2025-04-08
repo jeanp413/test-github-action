@@ -1,18 +1,54 @@
-// The Dev Container format allows you to configure your environment. At the heart of it
-// is a Docker image or Dockerfile which controls the tools available in your environment.
-//
-// See https://aka.ms/devcontainer.json for more information.
 {
-	"name": "foo",
-	// Use "image": "mcr.microsoft.com/vscode/devcontainers/base:ubuntu",
+	"name": "Python 3.10 + CUDA 12.4 + Unsloth",
+	// Use "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
 	// instead of the build to use a pre-built image.
 	"build": {
-        "context": ".",
+        "context": "..",
         "dockerfile": "Dockerfile"
     },
-	// Features add additional features to your environment. See https://containers.dev/features
-	// Beware: features are not supported on all platforms and may have unintended side-effects.
-	"features": {
-        "ghcr.io/devcontainers/features/docker-in-docker:2": {}
-    }
+
+	// Configure tool-specific properties
+	"customizations": {
+		// Configure properties specific to VS Code
+		"vscode": {
+			"settings": {
+				"python.defaultInterpreterPath": "/workspaces/venv/bin/python",
+				"python.terminal.activateEnvironment": true,
+				"remote.extensionKind": {
+					"ms-python.python": ["workspace"],
+					"ms-python.vscode-pylance": ["workspace"],
+					"ms-toolsai.jupyter": ["workspace"],
+					"saoudrizwan.claude-dev": ["workspace"]
+    			}
+			},
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"ms-toolsai.jupyter",
+				"saoudrizwan.claude-dev"
+			]
+		}
+	},
+
+	// Use 'postCreateCommand' to run commands after the container is created
+	"postCreateCommand": "python --version",
+
+	// Set environment variables
+	"remoteEnv": {
+		"PATH": "${containerEnv:PATH}:/workspaces/venv/bin",
+		"PYTHONPATH": "${containerEnv:PYTHONPATH}:/workspaces/dev-container-model"
+	}
+
+	// Use 'postStartCommand' to run commands each time the container is started
+	// "postStartCommand": "bash -c 'source /workspaces/venv/bin/activate && echo \"Virtual environment activated successfully\"'",
+
+
+	// // Features add additional features to your environment
+	// "features": {
+	// 	"ghcr.io/devcontainers/features/nvidia-cuda:1": {
+	// 		"installCudnn": true,
+	// 		"cudaVersion": "12.4",
+	// 		"installNvtx": true
+	// 	}
+	// }
 }
